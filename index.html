@@ -17,6 +17,7 @@
                 const fileContent = reader.result;                
                 const processedContent = fileContent.toUpperCase(); 
                 document.getElementById('output').value += processedContent;
+                input.value = ""; // Clear input value after processing
             };
 
             reader.readAsText(file);
@@ -37,14 +38,14 @@
 </head>
 <body>
     <div>
-        <label for="btnFiles" class="btn">Seleziona file da leggere e aggiungere:</label>
-        <input id="btnFiles" type="file" accept=".*" onchange="processFile(this)">
+        <label for="btnFiles" class="btn">Seleziona file:</label>
+        <input type="file" id="btnFiles" accept=".*" onchange="processFile(this)">
     </div>
     <br><br>
-    <button onclick="clearAllText()">Cancella testo</button>
+    <button onclick="clearAllText()">Cancella</button>
     <br><br>
     <textarea id="output" rows="30" cols="100"></textarea>
     <br><br>
-    <button onclick="downloadFile()">Scarica come file</button>
+    <button onclick="downloadFile()">Scarica File</button>
 </body>
 </html>

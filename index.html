@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Processor</title>
     <script>
+        function clearAllText() {
+            document.getElementById('output').value = "";
+        }
+
         function processFile(input) {
             const file = input.files[0];
             const reader = new FileReader();
 
             reader.onload = function() {
-                const fileContent = reader.result;
-                // Esegui qui l'elaborazione del contenuto del file
-                const processedContent = fileContent.toUpperCase(); // Esempio di elaborazione: converte tutto il testo in maiuscolo
-                document.getElementById('output').value = processedContent;
+                const fileContent = reader.result;                
+                const processedContent = fileContent.toUpperCase(); 
+                document.getElementById('output').value += processedContent;
             };
 
             reader.readAsText(file);
@@ -34,6 +37,7 @@
 </head>
 <body>
     <input type="file" accept=".txt" onchange="processFile(this)">
+    <button onclick="clearAllText()">Cancella</button>
     <br><br>
     <textarea id="output" rows="10" cols="50"></textarea>
     <br><br>

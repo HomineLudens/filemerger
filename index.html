@@ -36,11 +36,15 @@
     </script>
 </head>
 <body>
-    <input type="file" accept=".txt" onchange="processFile(this)">
-    <button onclick="clearAllText()">Cancella</button>
+    <div>
+        <label for="btnFiles" class="btn">Seleziona file da leggere e aggiungere:</label>
+        <input id="btnFiles" type="file" accept=".*" onchange="processFile(this)">
+    </div>
     <br><br>
-    <textarea id="output" rows="10" cols="50"></textarea>
+    <button onclick="clearAllText()">Cancella testo</button>
     <br><br>
-    <button onclick="downloadFile()">Scarica File</button>
+    <textarea id="output" rows="30" cols="100"></textarea>
+    <br><br>
+    <button onclick="downloadFile()">Scarica come file</button>
 </body>
 </html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Processor</title>
+    <script>
+        function processFile(input) {
+            const file = input.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                const fileContent = reader.result;
+                // Esegui qui l'elaborazione del contenuto del file
+                const processedContent = fileContent.toUpperCase(); // Esempio di elaborazione: converte tutto il testo in maiuscolo
+                document.getElementById('output').value = processedContent;
+            };
+
+            reader.readAsText(file);
+        }
+
+        function downloadFile() {
+            const content = document.getElementById('output').value;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'processed_file.txt';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</head>
+<body>
+    <input type="file" accept=".txt" onchange="processFile(this)">
+    <br><br>
+    <textarea id="output" rows="10" cols="50"></textarea>
+    <br><br>
+    <button onclick="downloadFile()">Scarica File</button>
+</body>
+</html>
